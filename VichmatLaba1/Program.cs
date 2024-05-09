@@ -49,10 +49,10 @@ class GausseMethod
 
 
         Console.WriteLine("Коэффициенты линейной функции");
-        printAnswer(answerLinear);
+        printAnswer(answerLinear, LINEAR);
 
         Console.WriteLine("Коэффициенты квадратичной функции");
-        printAnswer(answerQuadr);
+        printAnswer(answerQuadr, QUADRATIC);
 
 
         findDeltaLinearFunc(points, answerLinear, LINEAR);
@@ -128,12 +128,20 @@ class GausseMethod
         return Answer;
     }
 
-    private static void printAnswer(double[] answer)
+    private static void printAnswer(double[] answer, string typeOfDependence)
     {
-        for (int i = 0; i < answer.Length; i++)
+        switch (typeOfDependence)
         {
-            Console.WriteLine(answer[i] + "\n");
+            case LINEAR:
+                Console.WriteLine("a = " + answer[0] + "     b = " + answer[1] + "\n");
+                break;
+
+            case QUADRATIC:
+                Console.WriteLine("a0 = " + answer[0] + "     a1 = " + answer[1] + "     a2 = " + answer[2] + "\n");
+                break;
         }
+    
+        
     }
 
     private static void findDeltaLinearFunc(List<Point> points, double[] answer, string typeOfDependence)
@@ -144,7 +152,7 @@ class GausseMethod
         switch (typeOfDependence)
         {
 
-            case "linear":
+            case LINEAR:
                 for (int i = 0; i < points.Count; i++)
                 {
                     deltas.Add(points[i].y - (points[i].x * answer[0] + answer[1]));
@@ -152,7 +160,7 @@ class GausseMethod
                 }
                 break;
 
-            case "quadratic":
+            case QUADRATIC:
                 for (int i = 0; i < points.Count; i++)
                 {
                     deltas.Add(points[i].y - (answer[2] + points[i].x * answer[1]) + points[i].x * points[i].x * answer[0]);
