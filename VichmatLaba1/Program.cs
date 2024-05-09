@@ -48,10 +48,10 @@ class GausseMethod
         double[] answerQuadr = Gauss(matrixQuadr);
 
 
-        Console.WriteLine("Коэффициенты линейной функции");
+        Console.WriteLine("Коэффициенты для линейной аппроксимирующей функции");
         printAnswer(answerLinear, LINEAR);
 
-        Console.WriteLine("Коэффициенты квадратичной функции");
+        Console.WriteLine("Коэффициенты для квадратичной аппроксимирующей функции");
         printAnswer(answerQuadr, QUADRATIC);
 
 
@@ -174,7 +174,7 @@ class GausseMethod
             Console.WriteLine("x" + (i+1) + " = " + points[i].x + ", " + "y" + (i+1) + " = " + points[i].y + "    " + "Отклонение точки = " + deltas[i]);
         }
 
-        delta = delta / points.Count;
+        delta = Math.Sqrt(delta * delta / points.Count);
         Console.WriteLine("Отклонение = " + delta + "\n");
 
     }
